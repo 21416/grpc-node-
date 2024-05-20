@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package randomPackage;
+
+service random{
+    rpc joinchat (joinReq) returns (joinStatus);
+    rpc sendMsg (chatMessage) returns (empty);
+    rpc recieveMsg (empty) returns (stream chatMessage);
+    rpc sendData (empty) returns (MessageLogResponse);
+}
+message Logs{
+ 
+    string _id = 1;
+    string wamid = 2;
+    string c_id = 3;
+    string c_no = 4;
+    string mes = 5;
+    string dir = 6;
+    string st = 7;
+    string ca = 8;
+    string ua = 9;
+    string a_id = 10;
+  
+} 
+message MessageLogResponse {
+repeated Logs message_logs = 1;
+float time = 2;
+}
+message joinReq{
+    string user=1;
+    int32 id=2; 
+}
+message joinStatus{
+    string status=1;
+}
+message chatMessage{
+    string from=1;
+    string msg=2; 
+}
+message empty{
+
+}
